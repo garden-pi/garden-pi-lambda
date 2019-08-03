@@ -1,0 +1,29 @@
+service: garden-party-lambda
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: dev
+  region: us-east-2
+  apiKeys:
+    - default:
+      - defaultKey
+      - ${opts:stage}-defaultKey
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+    
+
+plugins:
+  - serverless-offline
+
+functions: 
+  api: 
+    handler: src/handler.update
+    events: 
+      - http
+        path: logs
+        method: post
+        private: true
+        
