@@ -1,0 +1,17 @@
+{
+  "name": "garden-party-lambda",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "sls offline start --port 4500",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Ian Hollander <ianholla@gmail.com>",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "serverless-offline": "^5.8.0"
+  }
+}

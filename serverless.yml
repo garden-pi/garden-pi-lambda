@@ -3,16 +3,15 @@ service: garden-party-lambda
 provider:
   name: aws
   runtime: nodejs10.x
-  stage: dev
+  stage: ${opt:stage, 'dev'}
   region: us-east-2
   apiKeys:
-    - default:
-      - defaultKey
-      - ${opts:stage}-defaultKey
+    - ${opt:stage}-defaultKey
   iamRoleStatements:
     - Effect: Allow
       Action:
         - dynamodb:PutItem
+      Resource: 'arn:aws:dynamodb:us-east-2:292146775046:table/GardenParty'
     
 
 plugins:
@@ -22,8 +21,8 @@ functions:
   api: 
     handler: src/handler.update
     events: 
-      - http
-        path: logs
-        method: post
-        private: true
+      - http:
+          path: logs/update
+          method: post
+          private: true
         
